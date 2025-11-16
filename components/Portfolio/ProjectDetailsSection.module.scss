@@ -1,0 +1,31 @@
+/* app/components/Portfolio/ProjectDetailsSection.module.scss */
+
+.section {
+  padding: 40px 0 64px 0;
+  background: rgba(3, 5, 12, 1);
+}
+
+.inner {
+  max-width: 840px;
+  margin: 0 auto;
+  padding: 0 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.block {
+  scroll-margin-top: 96px;
+}
+
+.block h3 {
+  font-size: 18px;
+  font-weight: 600;
+  margin-bottom: 6px;
+}
+
+.block p {
+  font-size: 14px;
+  line-height: 1.5;
+  opacity: 0.86;
+}

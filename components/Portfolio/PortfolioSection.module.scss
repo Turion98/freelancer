@@ -1,0 +1,35 @@
+/* app/components/Portfolio/PortfolioSection.module.scss */
+
+.section {
+  position: relative;
+  padding: 64px 0;
+  background: radial-gradient(circle at top, rgba(255, 255, 255, 0.04), transparent 55%)
+    rgba(6, 8, 16, 1);
+}
+
+.sectionHeader {
+  max-width: 840px;
+  margin: 0 auto 32px auto;
+  padding: 0 16px;
+  text-align: left;
+}
+
+.title {
+  font-size: clamp(26px, 3vw, 32px);
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  margin-bottom: 8px;
+}
+
+.subtitle {
+  font-size: 15px;
+  line-height: 1.5;
+  opacity: 0.8;
+}
+
+/* 🔥 Ezt kell hozzáadni: az overlay stack konténer */
+.overlayStack {
+  position: relative;  /* minden overlay ehhez igazodik */
+  margin-top: 20px;
+  min-height: 200px;   /* hogy ne omoljon össze animáció közben */
+}

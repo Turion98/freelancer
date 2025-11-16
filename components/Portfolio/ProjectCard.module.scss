@@ -1,0 +1,87 @@
+.card {
+  position: relative;
+  padding: 14px;
+  border-radius: 14px;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+
+  background: linear-gradient(
+      135deg,
+      rgba(255, 213, 106, 0.06),
+      transparent 55%
+    ),
+    rgba(10, 12, 22, 0.98);
+
+  box-shadow: 0 10px 26px rgba(0, 0, 0, 0.6);
+
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+
+  min-height: 160px;
+  overflow: visible;
+
+  transform-origin: top center;
+  transition:
+    transform 180ms ease,
+    box-shadow 180ms ease,
+    border-color 180ms ease,
+    background 180ms ease,
+    border-radius 180ms ease,
+    z-index 120ms ease;
+}
+
+/*  HOVER – az alap kártya egységes egyszínű panel lesz */
+.card:hover {
+  transform: translateY(-6px) scale(1.06);
+  box-shadow: 0 22px 48px rgba(0, 0, 0, 0.9);
+
+  /* ❗ teljesen eltűnik a border és minden kerekítés */
+  border: none;
+  border-radius: 14px 14px 0 0;
+
+  /* ❗ ugyanaz a háttér, mint a lenyíló panel */
+  background: rgba(40, 42, 54, 0.96);
+
+  z-index: 80;
+}
+
+/* LENYÍLÓ PANEL – 100%-ban összeolvad a kártyával */
+.cardExtra {
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 100%;
+
+  overflow: hidden;
+
+  /* kezdeti állapot */
+  max-height: 0;
+  opacity: 0;
+  pointer-events: none;
+  transform: translateY(-6px);
+  padding: 0 14px;
+
+  /* ❗ azonos háttér, így vizuálisan egybeolvad */
+  background: rgba(40, 42, 54, 0.96);
+
+  /* kerülnek a lekerekítések ide */
+  border-radius: 0 0 14px 14px;
+
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+
+  transition:
+    max-height 240ms ease,
+    opacity 180ms ease,
+    transform 200ms ease,
+    padding 220ms ease;
+}
+
+.card:hover .cardExtra {
+  max-height: 260px;
+  opacity: 1;
+  pointer-events: auto;
+  padding: 12px 14px 14px;
+  transform: translateY(0);
+}
