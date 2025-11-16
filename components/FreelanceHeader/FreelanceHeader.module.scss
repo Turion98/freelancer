@@ -1,0 +1,82 @@
+.header {
+  position: sticky;
+  top: 0;
+  z-index: 20;
+  padding: 1.25rem 1.5rem 0.75rem;
+  backdrop-filter: blur(18px);
+  background: linear-gradient(
+    to bottom,
+    rgba(15, 23, 42, 0.95),
+    rgba(15, 23, 42, 0.6),
+    transparent
+  );
+}
+
+.inner {
+  max-width: 1080px;
+  margin-inline: auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1.5rem;
+}
+
+.logoBlock {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.logoMark {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  inline-size: 32px;
+  block-size: 32px;
+  border-radius: 999px;
+  border: 1px solid rgba(251, 191, 36, 0.7);
+  font-size: 0.85rem;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: #facc15;
+}
+
+.logoText {
+  font-size: 0.95rem;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: rgba(248, 250, 252, 0.8);
+}
+
+.nav {
+  display: flex;
+  align-items: center;
+  gap: 1.25rem;
+  font-size: 0.9rem;
+}
+
+.navLink {
+  position: relative;
+  text-decoration: none;
+  color: rgba(226, 232, 240, 0.8);
+  padding-block: 0.15rem;
+}
+
+.navLink::after {
+  content: "";
+  position: absolute;
+  inset-inline: 0;
+  bottom: -0.15rem;
+  height: 1px;
+  transform-origin: center;
+  transform: scaleX(0);
+  transition: transform 160ms ease-out, opacity 160ms ease-out;
+  opacity: 0;
+  background: linear-gradient(90deg, #facc15, #38bdf8);
+}
+
+.navLink:hover::after {
+  transform: scaleX(1);
+  opacity: 1;
+}
