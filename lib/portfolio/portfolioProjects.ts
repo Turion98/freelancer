@@ -19,9 +19,9 @@ export type PortfolioProject = {
 
 export const portfolioProjects: PortfolioProject[] = [
   {
-    id: "ai-intake-discovery-flow",
+    id: "ai-intake-flow", // <-- EZ lett a kulcs: ezt nézi a ProjectCard
     categoryId: "ai-ux",
-    title: "AI Intake & Discovery Flow",
+    title: "AI Intake Flow",
     shortLabel: "AI Intake Flow",
     tag: "AI discovery onboarding",
     status: "beta",
@@ -29,7 +29,7 @@ export const portfolioProjects: PortfolioProject[] = [
       "AI-guided kérdéssor, ami pár lépésben feltérképezi az ügyfél igényeit, céljait, korlátait és érettségét.",
     valueProp:
       "Megmutatja, hogyan tervezel AI-alapú bevezető folyamatot, ami már az első perctől strukturálja a briefet.",
-    anchorId: "project-ai-intake-discovery-flow",
+    anchorId: "project-ai-intake-flow", // ha később lesz landing-szekció, ez jó anchor
     highlights: [
       "AI-guided onboarding kérdésáram",
       "Válasz-alapú dinamikus kérdéslogika",

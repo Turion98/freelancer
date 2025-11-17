@@ -15,13 +15,13 @@ export const portfolioCategories: PortfolioCategory[] = [
     label: "AI UX & Flow modulok",
     shortLabel: "AI UX Flow",
     description:
-      "AI-alapú projektfelmérés, flow vizualizáció és ajánlat-előkészítés – maga a rendszer a referencia.",
+      "",
   },
   {
     id: "marketing",
     label: "Marketing kampány projektek",
     shortLabel: "Marketing Engine",
     description:
-      "Interaktív kampány-játékok, fragment-alapú sztorik és nyereményjáték logikák. (Hamarosan részletezve.)",
+      "",
   },
 ];

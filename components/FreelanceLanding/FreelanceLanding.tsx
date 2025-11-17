@@ -1,6 +1,9 @@
+// app/components/FreelanceLanding/FreelanceLanding.tsx
+
 import { FreelanceHeader } from "../FreelanceHeader/FreelanceHeader";
 import { HeroSection } from "../HeroSection/HeroSection";
 import { PortfolioSection } from "../Portfolio/PortfolioSection";
+import { AiIntakeFlowDetails } from "../Pages/AiIntakeFlowDetails/AiIntakeFlowDetails";
 import styles from "./FreelanceLanding.module.scss";
 
 export function FreelanceLanding() {
@@ -11,8 +14,11 @@ export function FreelanceLanding() {
       <main className={styles.main}>
         <HeroSection />
 
-        {/* 🔥 ÚJ: Portfólió modulok megjelenítése */}
+        {/* Portfólió modulok grid */}
         <PortfolioSection />
+
+        {/* AI Intake Flow – részletes aloldal, scroll-cél az anchorId-hez */}
+        
       </main>
     </div>
   );

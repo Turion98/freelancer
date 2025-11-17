@@ -1,6 +1,9 @@
 // app/components/Portfolio/ProjectCard.tsx
 
+"use client";
+
 import React from "react";
+import Link from "next/link";
 import type { PortfolioProject } from "../../lib/portfolio/portfolioProjects";
 import s from "./ProjectCard.module.scss";
 
@@ -14,7 +17,25 @@ const statusLabel: Record<PortfolioProject["status"], string> = {
   concept: "Koncept",
 };
 
+// Eldöntjük, hova mutasson a "Tudj meg többet"
+const getDetailHref = (project: PortfolioProject): string => {
+  // 1) AI Intake Flow – külön oldal
+  if (project.id === "ai-intake-flow") {
+    return "/freelance/ai-intake-flow";
+  }
+
+  // 2) Minden más egyelőre anchor (később adhatunk nekik külön oldalt)
+  if (project.anchorId) {
+    return `#${project.anchorId}`;
+  }
+
+  // fallback, ha semmi nincs beállítva
+  return "#portfolio";
+};
+
 export const ProjectCard: React.FC<Props> = ({ project }) => {
+  const detailHref = getDetailHref(project);
+
   return (
     <article className={s.card}>
       {/* --- Always visible part --- */}
@@ -42,10 +63,10 @@ export const ProjectCard: React.FC<Props> = ({ project }) => {
           </ul>
         )}
 
-        <a href={`#${project.anchorId}`} className={s.moreLink}>
+        <Link href={detailHref} className={s.moreLink}>
           <span>Tudj meg többet</span>
           <span className={s.chevron}>↘</span>
-        </a>
+        </Link>
       </div>
     </article>
   );
