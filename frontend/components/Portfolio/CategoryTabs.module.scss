@@ -1,0 +1,58 @@
+/* app/components/Portfolio/CategoryTabs.module.scss */
+
+.wrapper {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  max-width: 960px;
+  margin: 0 auto 24px auto;
+  padding: 0 16px;
+}
+
+.tab {
+  position: relative;
+  flex: 1 1 220px;
+  padding: 12px 14px;
+  border-radius: 999px;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  background: rgba(10, 12, 22, 0.85);
+  cursor: pointer;
+  text-align: left;
+
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+
+  transition:
+    border-color 160ms ease,
+    background 160ms ease,
+    transform 160ms ease,
+    box-shadow 160ms ease;
+}
+
+.tab:hover {
+  border-color: rgba(255, 213, 106, 0.7);
+  background: rgba(16, 18, 32, 0.92);
+  transform: translateY(-1px);
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.45);
+}
+
+.tabActive {
+  border-color: rgba(255, 213, 106, 1);
+  background: radial-gradient(circle at top left, rgba(255, 213, 106, 0.25), transparent 55%)
+    rgba(16, 18, 32, 0.98);
+}
+
+.label {
+  font-size: 24px;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  text-align: center;
+}
+
+.desc {
+  font-size: 10px;
+  line-height: 1.4;
+  opacity: 0.8;
+}

@@ -1,0 +1,79 @@
+.wrapper {
+  max-width: 900px;
+  margin: 80px auto 0;
+  padding: 0 20px;
+}
+
+.hero {
+  margin-bottom: 48px;
+
+  h2 {
+    font-size: 36px;
+    font-weight: 700;
+    margin-bottom: 12px;
+  }
+
+  .subtitle {
+    font-size: 20px;
+    opacity: 0.8;
+    margin-bottom: 8px;
+  }
+
+  .lead {
+    font-size: 18px;
+    opacity: 0.75;
+    max-width: 700px;
+  }
+}
+
+.section {
+  margin: 48px 0;
+}
+
+.h3 {
+  font-size: 26px;
+  margin-bottom: 16px;
+}
+
+.step {
+  margin-bottom: 24px;
+
+  h4 {
+    font-size: 20px;
+    font-weight: 600;
+  }
+
+  p {
+    opacity: 0.8;
+  }
+}
+
+.list {
+  list-style: disc;
+  margin-left: 22px;
+
+  li {
+    margin-bottom: 10px;
+    opacity: 0.85;
+  }
+}
+
+.cta {
+  margin-top: 60px;
+  text-align: center;
+}
+
+.ctaBtn {
+  display: inline-block;
+  padding: 14px 28px;
+  border-radius: 8px;
+  background: #ffffff0d;
+  border: 1px solid #ffffff22;
+  text-decoration: none;
+  font-size: 18px;
+  transition: 0.2s;
+
+  &:hover {
+    background: #ffffff1a;
+  }
+}

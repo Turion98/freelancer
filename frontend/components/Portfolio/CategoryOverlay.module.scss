@@ -1,0 +1,54 @@
+/* app/components/Portfolio/CategoryOverlay.module.scss */
+
+.overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  max-width: 1050px;
+  margin: 0 auto;
+  padding: 0 16px;
+  overflow: hidden;
+}
+
+/* Új overlay: jobbról be */
+.enter {
+  animation: slideIn 480ms ease forwards;
+}
+
+/* Régi overlay: balra ki */
+.exit {
+  animation: slideOut 480ms ease forwards;
+}
+
+.overlayInner {
+  position: relative;
+  border-radius: 18px;
+  padding: 20px 18px 22px 18px;
+  background: radial-gradient(circle at top, rgba(255, 255, 255, 0.06), transparent 60%)
+    rgba(9, 12, 20, 0.98);
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.7);
+}
+
+@keyframes slideIn {
+  from {
+    opacity: 0;
+    transform: translateX(60px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes slideOut {
+  from {
+    opacity: 1;
+    transform: translateX(0);
+  }
+  to {
+    opacity: 0;
+    transform: translateX(-60px);
+  }
+}

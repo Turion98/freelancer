@@ -1,0 +1,14 @@
+/* app/components/Portfolio/ProjectGrid.module.scss */
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 14px;
+}
+
+.emptyState {
+  padding: 24px 8px;
+  font-size: 14px;
+  text-align: center;
+  opacity: 0.7;
+}
