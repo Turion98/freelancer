@@ -24,7 +24,12 @@ const getDetailHref = (project: PortfolioProject): string => {
     return "/freelance/ai-intake-flow";
   }
 
-  // 2) Minden más egyelőre anchor (később adhatunk nekik külön oldalt)
+  // 2) Content Schema & Validation System – külön oldal
+  if (project.id === "content-schema-validation") {
+    return "/freelance/content-schema-validation";
+  }
+
+  // 3) Minden más egyelőre anchor (később adhatunk nekik külön oldalt)
   if (project.anchorId) {
     return `#${project.anchorId}`;
   }

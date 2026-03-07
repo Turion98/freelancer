@@ -1,0 +1,15 @@
+.pageBg {
+  width: 100%;
+  min-height: 100%;
+  background: radial-gradient(
+  ellipse at top,
+  #2b6b7a 50%,
+  #020617 90%
+);
+}
+
+.shell {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 0 20px 80px;
+}
