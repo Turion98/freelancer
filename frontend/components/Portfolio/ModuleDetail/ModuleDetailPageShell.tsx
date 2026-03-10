@@ -135,21 +135,44 @@ export function ModuleDetailPageShell({ data }: Props) {
           />
         )}
 
-        {sequenceItem && (() => {
-          const seqData = sequenceItem.data as { actors?: unknown[]; steps?: unknown[] };
-          const hasSequenceData = seqData?.actors?.length && seqData?.steps;
-          return hasSequenceData ? (
-            <div className={s.sequenceDiagramSlot}>
-              <h3 className={s.diagramSlotTitle}>{sequenceItem.title}</h3>
-              {sequenceItem.description && (
-                <p className={s.diagramSlotDescription}>{sequenceItem.description}</p>
-              )}
-              <div className={s.diagramSlotBox}>
-                <SequenceDiagram data={sequenceItem.data as { actors: { id: string; label: string }[]; steps: { from: string; to: string; label: string; detail?: string }[] }} />
+        {sequenceItem &&
+          (() => {
+            const seqData = sequenceItem.data as {
+              columns?: { id: string; label: string }[];
+              rows?: { id: string }[];
+              items?: unknown[];
+            };
+            const hasSequenceData =
+              seqData?.columns?.length && seqData?.rows?.length && seqData?.items?.length;
+            return hasSequenceData ? (
+              <div className={s.sequenceDiagramSlot}>
+                <h3 className={s.diagramSlotTitle}>{sequenceItem.title}</h3>
+                {sequenceItem.description && (
+                  <p className={s.diagramSlotDescription}>{sequenceItem.description}</p>
+                )}
+                <div className={s.diagramSlotBox}>
+                  <SequenceDiagram
+                    data={
+                      sequenceItem.data as {
+                        columns: { id: string; label: string }[];
+                        rows: { id: string }[];
+                        items: {
+                          id: string;
+                          row: string;
+                          column: string;
+                          colSpan?: number;
+                          variant: "forward" | "backward" | "self";
+                          stepNumber: number;
+                          label: string;
+                          detail?: string;
+                        }[];
+                      }
+                    }
+                  />
+                </div>
               </div>
-            </div>
-          ) : null;
-        })()}
+            ) : null;
+          })()}
 
         <ModuleOutcomeSection outcome={data.outcome} />
         <ModuleTakeawaysSection takeaways={data.takeaways} />

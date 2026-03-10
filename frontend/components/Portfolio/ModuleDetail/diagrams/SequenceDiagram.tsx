@@ -1,78 +1,118 @@
 "use client";
 
+"use client";
+
 import React from "react";
 import s from "./SequenceDiagram.module.scss";
 
-type SequenceActor = {
+type SequenceDiagramColumn = {
   id: string;
   label: string;
 };
 
-type SequenceStep = {
-  from: string;
-  to: string;
+type SequenceDiagramRow = {
+  id: string;
+};
+
+type SequenceDiagramItemVariant = "forward" | "backward" | "self";
+
+type SequenceDiagramItem = {
+  id: string;
+  row: string;
+  column: string;
+  colSpan?: number;
+  variant: SequenceDiagramItemVariant;
+  stepNumber: number;
   label: string;
   detail?: string;
 };
 
-type SequenceData = {
-  actors: SequenceActor[];
-  steps: SequenceStep[];
+type SequenceDiagramData = {
+  columns: SequenceDiagramColumn[];
+  rows: SequenceDiagramRow[];
+  items: SequenceDiagramItem[];
 };
 
 type Props = {
-  data: SequenceData;
+  data: SequenceDiagramData;
 };
 
 export function SequenceDiagram({ data }: Props) {
-  const { actors, steps } = data;
-  const actorIndex = new Map(actors.map((a, i) => [a.id, i]));
-  const cols = actors.length;
-  const gridCols = `repeat(${cols}, 1fr)`;
+  const { columns, rows, items } = data;
+
+  const columnIndex = new Map<string, number>(
+    columns.map((column, index) => [column.id, index])
+  );
+
+  const colCount = columns.length;
+  const gridCols = `repeat(${colCount}, 1fr)`;
 
   return (
     <div className={s.wrapper}>
       <div className={s.actors} style={{ gridTemplateColumns: gridCols }}>
-        {actors.map((actor) => (
-          <div key={actor.id} className={s.actor}>
-            <span className={s.actorLabel}>{actor.label}</span>
+        {columns.map((column) => (
+          <div key={column.id} className={s.actor}>
+            <span className={s.actorLabel}>{column.label}</span>
           </div>
         ))}
       </div>
 
       <div className={s.steps}>
-        {steps.map((step, i) => {
-          const fromIdx = actorIndex.get(step.from);
-          const toIdx = actorIndex.get(step.to);
-          if (fromIdx === undefined || toIdx === undefined) return null;
+        {rows.map((row) => {
+          const rowItems = items.filter((item) => item.row === row.id);
 
-          const isSelf = fromIdx === toIdx;
-          const start = Math.min(fromIdx, toIdx) + 1;
-          const end = Math.max(fromIdx, toIdx) + 2;
-          const isForward = fromIdx <= toIdx;
+          if (!rowItems.length) {
+            return null;
+          }
 
           return (
             <div
-              key={`${step.from}-${step.to}-${i}`}
+              key={row.id}
               className={s.stepRow}
               style={{ gridTemplateColumns: gridCols }}
             >
-              <div
-                className={isSelf ? s.selfStep : isForward ? s.forwardStep : s.backwardStep}
-                style={{
-                  gridColumn: isSelf ? `${fromIdx + 1}` : `${start} / ${end}`,
-                }}
-              >
-                <div className={s.line} />
-                {!isSelf && <div className={s.arrow} />}
-                <div className={s.labelCard}>
-                  <span className={s.stepNum}>{String(i + 1).padStart(2, "0")}</span>
-                  <span className={s.stepLabel}>{step.label}</span>
-                  {step.detail && (
-                    <span className={s.stepDetail}>{step.detail}</span>
-                  )}
-                </div>
-              </div>
+              {rowItems.map((item) => {
+                const colIdx = columnIndex.get(item.column);
+                if (colIdx === undefined) return null;
+
+                const startCol = colIdx + 1;
+                const endCol = item.colSpan
+                  ? startCol + item.colSpan
+                  : startCol + 1;
+
+                const isSelf = item.variant === "self";
+
+                const stepClass =
+                  item.variant === "self"
+                    ? s.selfStep
+                    : item.variant === "backward"
+                    ? s.backwardStep
+                    : s.forwardStep;
+
+                return (
+                  <div
+                    key={item.id}
+                    className={stepClass}
+                    style={{
+                      gridColumn: item.colSpan
+                        ? `${startCol} / ${endCol}`
+                        : `${startCol}`,
+                    }}
+                  >
+                    <div className={s.line} />
+                    {!isSelf && <div className={s.arrow} />}
+                    <div className={s.labelCard}>
+                      <span className={s.stepNum}>
+                        {String(item.stepNumber).padStart(2, "0")}
+                      </span>
+                      <span className={s.stepLabel}>{item.label}</span>
+                      {item.detail && (
+                        <span className={s.stepDetail}>{item.detail}</span>
+                      )}
+                    </div>
+                  </div>
+                );
+              })}
             </div>
           );
         })}
