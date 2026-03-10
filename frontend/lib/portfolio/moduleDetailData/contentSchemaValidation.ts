@@ -174,97 +174,191 @@ export const contentSchemaValidationModule: ModuleDetailData = {
       description:
         "The validation system is implemented across frontend and backend layers using the same shared schema contract.",
       data: {
+        layout: {
+          canvasHeight: 460,
+          nodeWidth: "md",
+          nodeHeight: "md",
+          edgeStyle: "elbow",
+          labelStyle: "badge",
+        },
         nodes: [
-          { id: "author", label: "Content Author" },
-          { id: "schema", label: "Shared Schema (CoreSchema.json)" },
-          { id: "frontend", label: "Frontend Validation Layer" },
-          { id: "backend", label: "Backend Validation Layer" },
-          { id: "storage", label: "Story Storage" },
-          { id: "runtime", label: "Runtime Engine" },
-        ],
-        edges: [
-          { from: "author", to: "frontend", label: "uploads story JSON" },
-          { from: "schema", to: "frontend", label: "shared contract" },
-          { from: "schema", to: "backend", label: "shared contract" },
-          { from: "frontend", to: "backend", label: "validated upload" },
-          { from: "backend", to: "storage", label: "accepted story" },
-          { from: "storage", to: "runtime", label: "runtime-safe content" },
-        ],
+      {
+        id: "schema",
+        label: "Shared Schema\n(CoreSchema.json)",
+        x: 50,
+        y: 10,
+        width: "lg",
+      },
+
+      {
+        id: "author",
+        label: "Content Author",
+        x: 10,
+        y: 18,
+        width: "md",
+      },
+
+      {
+        id: "frontend",
+        label: "Frontend Validation\nLayer",
+        x: 40,
+        y: 36,
+        width: "lg",
+      },
+
+      {
+        id: "backend",
+        label: "Backend Validation Layer",
+        x: 70,
+        y: 36,
+        width: "lg",
+      },
+
+      {
+        id: "storage",
+        label: "Story Storage",
+        x: 50,
+        y: 62,
+        width: "md",
+      },
+
+      {
+        id: "runtime",
+        label: "Runtime Engine",
+        x: 50,
+        y: 82,
+        width: "md",
+      },
+    ],
+
+    edges: [
+  {
+    from: "author",
+    to: "frontend",
+    label: "uploads story JSON",
+    route: "horizontal",
+    sourceAnchor: "right",
+    targetAnchor: "left",
+    labelOffsetX: 9,
+    labelOffsetY: 0.2,
+  },
+  {
+    from: "schema",
+    to: "frontend",
+    label: "shared contract",
+    route: "vertical",
+    sourceAnchor: "bottom",
+    targetAnchor: "top",
+    labelOffsetX: -3.2,
+    labelOffsetY: 0.8,
+  },
+  {
+    from: "schema",
+    to: "backend",
+    label: "shared contract",
+    route: "vertical",
+    sourceAnchor: "bottom",
+    targetAnchor: "top",
+    labelOffsetX: 3.2,
+    labelOffsetY: 0.8,
+  },
+  {
+    from: "frontend",
+    to: "storage",
+    label: "accepted story",
+    route: "vertical",
+    sourceAnchor: "bottom",
+    targetAnchor: "top",
+    labelOffsetX: -4,
+    labelOffsetY: -0.4,
+  },
+  {
+    from: "backend",
+    to: "storage",
+    label: "accepted story",
+    route: "vertical",
+    sourceAnchor: "bottom",
+    targetAnchor: "top",
+    labelOffsetX: 4,
+    labelOffsetY: -0.4,
+  },
+  {
+    from: "storage",
+    to: "runtime",
+    label: "runtime-safe content",
+    route: "vertical",
+    sourceAnchor: "bottom",
+    targetAnchor: "top",
+    labelOffsetX: 0,
+    labelOffsetY: -0.2,
+  },
+],
       },
     },
     {
-  type: "sequence",
-  title: "Validation Sequence",
-  description:
-    "Message flow across client and server validation layers during story upload.",
-
-  data: {
-    actors: [
-      { id: "author", label: "Author" },
-      { id: "frontend", label: "Frontend" },
-      { id: "backend", label: "Backend" },
-      { id: "storage", label: "Storage" },
-    ],
-
-    steps: [
-      {
-        from: "author",
-        to: "frontend",
-        label: "Upload story JSON",
-        detail: "Raw story definition submitted for validation",
+      type: "sequence",
+      title: "Validation Sequence",
+      description:
+        "Message flow across client and server validation layers during story upload.",
+      data: {
+        actors: [
+          { id: "author", label: "Author" },
+          { id: "frontend", label: "Frontend" },
+          { id: "backend", label: "Backend" },
+          { id: "storage", label: "Storage" },
+        ],
+        steps: [
+          {
+            from: "author",
+            to: "frontend",
+            label: "Upload story JSON",
+            detail: "Raw story definition submitted for validation",
+          },
+          {
+            from: "frontend",
+            to: "frontend",
+            label: "Run schema validation",
+            detail: "AJV validates story against CoreSchema.json",
+          },
+          {
+            from: "frontend",
+            to: "backend",
+            label: "Submit validated story",
+            detail: "Only client-valid stories are forwarded to the API",
+          },
+          {
+            from: "backend",
+            to: "backend",
+            label: "Re-validate schema",
+            detail: "Server enforces the same schema contract independently",
+          },
+          {
+            from: "backend",
+            to: "backend",
+            label: "Run semantic checks",
+            detail: "Verify page references, start node, and navigation integrity",
+          },
+          {
+            from: "backend",
+            to: "backend",
+            label: "Canonicalize structure",
+            detail: "Normalize story shape before persistence",
+          },
+          {
+            from: "backend",
+            to: "storage",
+            label: "Store accepted story",
+            detail: "Only structurally valid stories are persisted",
+          },
+          {
+            from: "backend",
+            to: "frontend",
+            label: "Return accepted response",
+            detail: "Frontend receives confirmation that the story is accepted",
+          },
+        ],
       },
-
-      {
-        from: "frontend",
-        to: "frontend",
-        label: "Run schema validation",
-        detail: "AJV validates story against CoreSchema.json",
-      },
-
-      {
-        from: "frontend",
-        to: "backend",
-        label: "Submit validated story",
-        detail: "Only client-valid stories are forwarded to the API",
-      },
-
-      {
-        from: "backend",
-        to: "backend",
-        label: "Re-validate schema",
-        detail: "Server enforces the same schema contract independently",
-      },
-
-      {
-        from: "backend",
-        to: "backend",
-        label: "Run semantic checks",
-        detail: "Verify page references, start node, and navigation integrity",
-      },
-
-      {
-        from: "backend",
-        to: "backend",
-        label: "Canonicalize structure",
-        detail: "Normalize story shape before persistence",
-      },
-
-      {
-        from: "backend",
-        to: "storage",
-        label: "Store accepted story",
-        detail: "Only structurally valid stories are persisted",
-      },
-
-      {
-        from: "backend",
-        to: "frontend",
-        label: "Return accepted response",
-        detail: "Frontend receives confirmation that the story is accepted",
-      },
-    ],
-  },
-}
+    },
   ],
 
   flow: {

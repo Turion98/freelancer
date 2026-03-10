@@ -5,8 +5,8 @@ import s from "./ModuleNarrativeSection.module.scss";
 
 type Props = {
   overview?: { paragraphs: string[] };
-  problem: { intro: string; points: string[]; examples?: string[] };
-  solution: { intro: string; points: string[] };
+  problem: { intro?: string; title?: string; points: string[]; examples?: string[] };
+  solution: { intro?: string; points?: string[]; paragraphs?: string[] };
   contentStructure?: {
     title: string;
     intro?: string;
@@ -52,12 +52,20 @@ export function ModuleNarrativeSection({
       </div>
 
       <div className={s.problemSolutionBlock}>
-        <p className={s.intro}>{solution.intro}</p>
-        <ul className={s.list}>
-          {solution.points.map((point, i) => (
-            <li key={i}>{point}</li>
-          ))}
-        </ul>
+        {solution.intro && <p className={s.intro}>{solution.intro}</p>}
+        {(solution.points?.length ?? 0) > 0 ? (
+          <ul className={s.list}>
+            {solution.points!.map((point, i) => (
+              <li key={i}>{point}</li>
+            ))}
+          </ul>
+        ) : solution.paragraphs && solution.paragraphs.length > 0 ? (
+          <div className={s.paragraphs}>
+            {solution.paragraphs.map((p, i) => (
+              <p key={i}>{p}</p>
+            ))}
+          </div>
+        ) : null}
       </div>
 
       {contentStructure && (

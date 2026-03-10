@@ -118,7 +118,29 @@ export const portfolioProjects: PortfolioProject[] = [
     summary: "Questell content contract és validációs réteg.",
     valueProp: "Előkészített technikai use case – részletes aloldal később.",
     anchorId: "project-content-schema-validation",
-    highlights: [],
+    highlights: [
+      "Közös JSON Schema (CoreSchema.json) frontend és backend számára",
+      "AJV validáció feltöltéskor és a runtime előtt",
+      "Stabil content contract a szerzők és a runtime engine között",
+    ],
+  },
+  {
+    id: "backend-story-resolution",
+    categoryId: "json-engine",
+    title: "Backend Story Resolution & Page API",
+    shortLabel: "Story Resolution",
+    tag: "JSON content delivery",
+    status: "concept",
+    summary:
+      "Backend réteg, ami strukturált story JSON fájlokat tölt, oldalanként feloldja a kéréseket, normalizálja a választ és stabil page contractot ad a frontend runtime-nak.",
+    valueProp:
+      "Csak a kért oldal kerül kiszolgálásra; a teljes story graph nem töltődik le, így könnyebb a runtime és skálázhatóbb a tartalom.",
+    anchorId: "project-backend-story-resolution",
+    highlights: [
+      "Page-level API, inkrementális kiszolgálás",
+      "Story JSON betöltés és feloldás backend oldalon",
+      "Normalizált page válasz, stabil runtime contract",
+    ],
   },
 
   // Marketing kategória – most még placeholder

@@ -69,11 +69,36 @@ export function ModuleDetailPageShell({ data }: Props) {
             <div className={s.diagramSlotBox}>
               {((): React.ReactNode => {
                 const d = architectureItem.data as {
-                  nodes?: { id: string; label: string }[];
-                  edges?: { from: string; to: string; label?: string }[];
+                  layout?: {
+                    canvasHeight?: number;
+                    nodeWidth?: "lg" | "md";
+                    nodeHeight?: "lg" | "md";
+                    edgeStyle?: string;
+                    labelStyle?: string;
+                  };
+                  nodes?: {
+                    id: string;
+                    label: string;
+                    x?: number;
+                    y?: number;
+                    width?: "lg" | "md";
+                  }[];
+                  edges?: {
+                    from: string;
+                    to: string;
+                    label?: string;
+                    sourceAnchor?: "left" | "right" | "top" | "bottom";
+                    targetAnchor?: "left" | "right" | "top" | "bottom";
+                    route?: "horizontal" | "vertical" | "auto";
+                    labelOffsetX?: number;
+                  }[];
                 };
                 return d?.nodes && d?.edges ? (
-                  <ArchitectureDiagram nodes={d.nodes} edges={d.edges} />
+                  <ArchitectureDiagram
+                    layout={d.layout}
+                    nodes={d.nodes}
+                    edges={d.edges}
+                  />
                 ) : null;
               })()}
             </div>

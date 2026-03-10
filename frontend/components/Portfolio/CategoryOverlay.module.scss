@@ -8,16 +8,18 @@
   max-width: 1050px;
   margin: 0 auto;
   padding: 0 16px;
-  overflow: hidden;
+  overflow: visible; /* kártya hover / lenyíló panel ne vágódjon le */
 }
 
-/* Új overlay: jobbról be */
+/* Új overlay: jobbról be, mindig a kilépő fölött */
 .enter {
+  z-index: 2;
   animation: slideIn 480ms ease forwards;
 }
 
 /* Régi overlay: balra ki */
 .exit {
+  z-index: 1;
   animation: slideOut 480ms ease forwards;
 }
 
@@ -25,6 +27,7 @@
   position: relative;
   border-radius: 18px;
   padding: 20px 18px 22px 18px;
+  overflow: visible;
   background: radial-gradient(circle at top, rgba(255, 255, 255, 0.06), transparent 60%)
     rgba(9, 12, 20, 0.98);
   border: 1px solid rgba(255, 255, 255, 0.06);

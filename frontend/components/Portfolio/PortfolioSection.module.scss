@@ -31,5 +31,5 @@
 .overlayStack {
   position: relative;  /* minden overlay ehhez igazodik */
   margin-top: 20px;
-  min-height: 200px;   /* hogy ne omoljon össze animáció közben */
+  min-height: 480px;   /* elég hely 1–2 sor kártyának, ne vágja le az overlay tartalmát */
 }

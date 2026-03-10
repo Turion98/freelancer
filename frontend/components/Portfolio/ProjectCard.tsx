@@ -29,7 +29,12 @@ const getDetailHref = (project: PortfolioProject): string => {
     return "/freelance/content-schema-validation";
   }
 
-  // 3) Minden más egyelőre anchor (később adhatunk nekik külön oldalt)
+  // 3) Backend Story Resolution & Page API – külön oldal
+  if (project.id === "backend-story-resolution") {
+    return "/freelance/backend-story-resolution";
+  }
+
+  // 4) Minden más egyelőre anchor (később adhatunk nekik külön oldalt)
   if (project.anchorId) {
     return `#${project.anchorId}`;
   }
