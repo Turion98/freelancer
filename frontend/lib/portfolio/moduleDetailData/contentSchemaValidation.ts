@@ -18,6 +18,63 @@ export const contentSchemaValidationModule: ModuleDetailData = {
     ],
   },
 
+  entryFlow: {
+  eyebrow: "Product Flow",
+  title: "From Authoring to Runtime Experience",
+  lead:
+    "This validation layer connects structured content authoring with runtime execution, ensuring that only valid interactive stories reach the user experience.",
+  steps: [
+    {
+      title: "Author",
+      description:
+        "A content author defines the interactive story structure.",
+    },
+    {
+      title: "Structured Story JSON",
+      description:
+        "The experience is encoded as a branching JSON content file.",
+    },
+    {
+      title: "Schema Validation",
+      description:
+        "The story is checked against a shared schema before execution.",
+    },
+    {
+      title: "Runtime Engine",
+      description:
+        "Only validated stories are accepted by the execution layer.",
+    },
+    {
+      title: "Interactive Experience",
+      description:
+        "Users navigate a stable branching experience powered by validated content.",
+    },
+  ],
+},
+
+  jsonPreview: {
+  eyebrow: "Validated Content Contract",
+  title: "Example Story JSON",
+  lead:
+    "A representative excerpt from a Questell story file. The shared schema validates this structure before the story can enter the runtime.",
+  language: "json",
+  code: `{
+  "id": "coffee_quiz_demo",
+  "locale": "en",
+  "pages": [
+    {
+      "id": "start",
+      "type": "choice",
+      "title": "Choose your coffee style",
+      "choices": [
+        { "label": "Espresso", "next": "espresso_result" },
+        { "label": "Latte", "next": "latte_result" }
+      ]
+    }
+  ]
+}`,
+},
+
   snapshot: [
     {
       label: "Purpose",
@@ -135,6 +192,79 @@ export const contentSchemaValidationModule: ModuleDetailData = {
         ],
       },
     },
+    {
+  type: "sequence",
+  title: "Validation Sequence",
+  description:
+    "Message flow across client and server validation layers during story upload.",
+
+  data: {
+    actors: [
+      { id: "author", label: "Author" },
+      { id: "frontend", label: "Frontend" },
+      { id: "backend", label: "Backend" },
+      { id: "storage", label: "Storage" },
+    ],
+
+    steps: [
+      {
+        from: "author",
+        to: "frontend",
+        label: "Upload story JSON",
+        detail: "Raw story definition submitted for validation",
+      },
+
+      {
+        from: "frontend",
+        to: "frontend",
+        label: "Run schema validation",
+        detail: "AJV validates story against CoreSchema.json",
+      },
+
+      {
+        from: "frontend",
+        to: "backend",
+        label: "Submit validated story",
+        detail: "Only client-valid stories are forwarded to the API",
+      },
+
+      {
+        from: "backend",
+        to: "backend",
+        label: "Re-validate schema",
+        detail: "Server enforces the same schema contract independently",
+      },
+
+      {
+        from: "backend",
+        to: "backend",
+        label: "Run semantic checks",
+        detail: "Verify page references, start node, and navigation integrity",
+      },
+
+      {
+        from: "backend",
+        to: "backend",
+        label: "Canonicalize structure",
+        detail: "Normalize story shape before persistence",
+      },
+
+      {
+        from: "backend",
+        to: "storage",
+        label: "Store accepted story",
+        detail: "Only structurally valid stories are persisted",
+      },
+
+      {
+        from: "backend",
+        to: "frontend",
+        label: "Return accepted response",
+        detail: "Frontend receives confirmation that the story is accepted",
+      },
+    ],
+  },
+}
   ],
 
   flow: {
@@ -209,6 +339,7 @@ export const contentSchemaValidationModule: ModuleDetailData = {
     },
   ],
 
+  
   runtimeSafety: {
     title: "Runtime Safety",
     paragraphs: [

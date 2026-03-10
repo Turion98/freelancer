@@ -1,58 +1,52 @@
+@use "variables" as v;
+
 .wrapper {
-  margin: 84px 0 72px;
+  margin: 88px 0 76px;
   max-width: 980px;
 }
 
 .title {
-  font-size: clamp(1.35rem, 2vw, 1.65rem);
-  font-weight: 650;
+  font-size: clamp(1.45rem, 2vw, 1.75rem);
+  font-weight: 800;
   line-height: 1.12;
-  letter-spacing: -0.02em;
-  margin-bottom: 24px;
-  color: rgba(255, 255, 255, 0.96);
+  letter-spacing: -0.025em;
+  margin-bottom: 32px;
+  padding-bottom: 12px;
+  border-bottom: 3px solid v.$accent-warm-muted;
+  color: v.$text-hero;
 }
 
 .list {
   list-style: none;
   margin: 0;
   padding: 0;
-
   display: grid;
-  gap: 14px;
+  gap: 18px;
 }
 
 .list li {
   position: relative;
-
-  padding: 16px 18px 16px 38px;
-
+  padding: 20px 22px 20px 44px;
   border-radius: 14px;
-
-  background: rgba(255, 255, 255, 0.025);
-  border: 1px solid rgba(255, 255, 255, 0.08);
-
-  font-size: 0.98rem;
-  line-height: 1.65;
-  color: rgba(255, 255, 255, 0.84);
-
-  box-shadow:
-    inset 0 1px 0 rgba(255, 255, 255, 0.03),
-    0 12px 28px rgba(0, 0, 0, 0.18);
+  background: linear-gradient(135deg, v.$card-bg-warm-tint 0%, v.$card-bg 100%);
+  border: 1px solid v.$card-border;
+  border-left: 4px solid v.$accent-warm-subtle;
+  font-size: 1.02rem;
+  line-height: 1.68;
+  color: v.$text-body;
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.04), v.$card-shadow, v.$card-shadow-glow-warm;
 }
 
 .list li::before {
   content: "";
-
   position: absolute;
   left: 16px;
   top: 50%;
   transform: translateY(-50%);
-
   width: 8px;
   height: 8px;
   border-radius: 50%;
-
-  background: rgba(255, 255, 255, 0.9);
+  background: v.$accent-warm;
 }
 
 @media (max-width: 768px) {

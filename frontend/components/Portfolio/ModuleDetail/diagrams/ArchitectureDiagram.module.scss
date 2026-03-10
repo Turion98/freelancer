@@ -7,187 +7,199 @@
 .diagram {
   position: relative;
   width: min(100%, 760px);
-  min-height: 620px;
+  min-height: 500px;
 }
 
+/* nodes */
 
 .node {
   position: absolute;
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: 0.8rem 0.95rem;
+  padding: 0.72rem 0.9rem;
   border-radius: 14px;
   background: linear-gradient(
     180deg,
-    rgba(26, 26, 34, 0.94),
-    rgba(20, 20, 28, 0.94)
+    rgba(24, 26, 34, 0.96),
+    rgba(16, 18, 25, 0.98)
   );
   border: 1px solid rgba(255, 255, 255, 0.1);
-  color: rgba(255, 255, 255, 0.96);
-  font-size: 0.84rem;
+  color: rgba(248, 249, 251, 0.96);
+  font-size: 0.92rem;
   font-weight: 600;
-  line-height: 1.25;
+  line-height: 1.24;
   text-align: center;
   box-shadow:
-    0 10px 24px rgba(0, 0, 0, 0.24),
-    inset 0 1px 0 rgba(255, 255, 255, 0.03);
+    0 12px 28px rgba(0, 0, 0, 0.28),
+    inset 0 1px 0 rgba(255, 255, 255, 0.04);
 }
 
-.author {
-  top: 50px;
-  left: 0;
-  width: 170px;
-  min-height: 60px;
-}
+/* central node gets a bit more emphasis */
 
 .schema {
   top: 0;
   left: 50%;
   transform: translateX(-50%);
-  width: 230px;
-  min-height: 68px;
+  width: 224px;
+  min-height: 64px;
+  border-color: rgba(125, 219, 227, 0.22);
+  box-shadow:
+    0 14px 30px rgba(0, 0, 0, 0.3),
+    0 0 0 1px rgba(125, 219, 227, 0.06),
+    inset 0 1px 0 rgba(255, 255, 255, 0.05);
+}
+
+.author {
+  top: 42px;
+  left: 0;
+  width: 164px;
+  min-height: 56px;
 }
 
 .frontend {
-  top: 160px;
+  top: 140px;
   left: 150px;
   width: 180px;
-  min-height: 64px;
+  min-height: 60px;
 }
 
 .backend {
-  top: 160px;
+  top: 140px;
   right: 150px;
   width: 180px;
-  min-height: 64px;
+  min-height: 60px;
 }
 
 .storage {
-  top: 310px;
+  top: 270px;
   left: 50%;
   transform: translateX(-50%);
-  width: 200px;
-  min-height: 64px;
+  width: 194px;
+  min-height: 60px;
 }
 
 .runtime {
-  top: 430px;
+  top: 372px;
   left: 50%;
   transform: translateX(-50%);
-  width: 200px;
-  min-height: 64px;
+  width: 194px;
+  min-height: 60px;
 }
+
+/* lines */
 
 .line {
   position: absolute;
-
-  background: rgba(255,255,255,0.35);
-
+  background: linear-gradient(
+    180deg,
+    rgba(255, 255, 255, 0.16),
+    rgba(125, 219, 227, 0.42),
+    rgba(255, 255, 255, 0.16)
+  );
   border-radius: 999px;
-
-  box-shadow: 0 0 0 1px rgba(0,0,0,0.15);
+  box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.12);
 }
 
 .schemaToFrontend {
-  top: 96px;
-  left: 312px;
+  top: 88px;
+  left: 314px;
   width: 2px;
-  height: 74px;
+  height: 66px;
   transform: rotate(28deg);
   transform-origin: top center;
 }
 
 .schemaToBackend {
-  top: 96px;
-  right: 312px;
+  top: 88px;
+  right: 314px;
   width: 2px;
-  height: 74px;
+  height: 66px;
   transform: rotate(-28deg);
   transform-origin: top center;
 }
 
 .frontendToStorage {
-  top: 254px;
-  left: 250px;
+  top: 220px;
+  left: 252px;
   width: 2px;
-  height: 62px;
+  height: 56px;
   transform: rotate(-28deg);
   transform-origin: top center;
 }
 
 .backendToStorage {
-  top: 254px;
-  right: 250px;
+  top: 220px;
+  right: 252px;
   width: 2px;
-  height: 62px;
+  height: 56px;
   transform: rotate(28deg);
   transform-origin: top center;
 }
 
 .storageToRuntime {
-  top: 374px;
+  top: 330px;
   left: 50%;
   transform: translateX(-50%);
   width: 2px;
-  height: 56px;
+  height: 42px;
 }
 
 .authorToFrontend {
-  top: 140px;
-   left: 120px;
+  top: 122px;
+  left: 118px;
   width: 2px;
-  height: 62px;
+  height: 56px;
   transform: rotate(-28deg);
   transform-origin: top center;
 }
 
+/* edge labels */
+
 .edgeLabel {
   position: absolute;
-
-  padding: 0.25rem 0.55rem;
-
+  padding: 0.22rem 0.52rem;
   border-radius: 999px;
-
-  background: rgba(15,15,18,0.9);
-  border: 1px solid rgba(255,255,255,0.12);
-
-  color: rgba(255,255,255,0.85);
-
-  font-size: 0.68rem;
+  background: rgba(14, 16, 22, 0.92);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  color: rgba(233, 239, 241, 0.82);
+  font-size: 0.64rem;
   font-weight: 500;
-
   letter-spacing: 0.02em;
-
   white-space: nowrap;
+  box-shadow:
+    0 6px 16px rgba(0, 0, 0, 0.16),
+    inset 0 1px 0 rgba(255, 255, 255, 0.03);
 }
 
 .labelAuthor {
-  top: 214px;
+  top: 186px;
   left: 72px;
 }
 
 .labelSharedLeft {
-  top: 102px;
-  left: 255px;
+  top: 94px;
+  left: 256px;
 }
 
 .labelSharedRight {
-  top: 102px;
-  right: 255px;
+  top: 94px;
+  right: 256px;
 }
 
 .labelStorage {
-  top: 278px;
+  top: 244px;
   left: 50%;
   transform: translateX(-50%);
 }
 
 .labelRuntime {
-  top: 397px;
+  top: 346px;
   left: 50%;
   transform: translateX(-50%);
 }
+
+/* fallback */
 
 .fallbackGrid {
   width: 100%;

@@ -1,0 +1,25 @@
+// Module detail page – visual hierarchy tokens
+// Primary accent: cyan (tech / system)
+// Secondary accent: warm (champagne / gold – outcome, highlights)
+
+$accent-cyan: #5dd0dc;
+$accent-cyan-muted: rgba(93, 208, 220, 0.52);
+$accent-cyan-subtle: rgba(93, 208, 220, 0.2);
+$accent-warm: #d4b896;
+$accent-warm-muted: rgba(212, 184, 150, 0.58);
+$accent-warm-subtle: rgba(212, 184, 150, 0.14);
+
+$text-hero: rgba(255, 255, 255, 0.99);
+$text-primary: rgba(255, 255, 255, 0.94);
+$text-body: rgba(255, 255, 255, 0.88);
+$text-muted: rgba(255, 255, 255, 0.64);
+$text-meta: rgba(255, 255, 255, 0.52);
+
+$card-bg: rgba(255, 255, 255, 0.035);
+$card-bg-cyan-tint: rgba(93, 208, 220, 0.04);
+$card-bg-warm-tint: rgba(212, 184, 150, 0.04);
+$card-border: rgba(255, 255, 255, 0.09);
+$card-border-accent: rgba(93, 208, 220, 0.28);
+$card-shadow: 0 12px 32px rgba(0, 0, 0, 0.22);
+$card-shadow-glow-cyan: 0 0 24px rgba(93, 208, 220, 0.08);
+$card-shadow-glow-warm: 0 0 24px rgba(212, 184, 150, 0.06);

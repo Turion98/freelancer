@@ -26,63 +26,56 @@ type Props = {
 
 export function SequenceDiagram({ data }: Props) {
   const { actors, steps } = data;
-
-  const actorIndex = new Map(actors.map((actor, i) => [actor.id, i]));
-  const gridTemplateColumns = `repeat(${actors.length}, minmax(140px, 1fr))`;
+  const actorIndex = new Map(actors.map((a, i) => [a.id, i]));
+  const cols = actors.length;
+  const gridCols = `repeat(${cols}, 1fr)`;
 
   return (
     <div className={s.wrapper}>
-      <div className={s.diagram} style={{ gridTemplateColumns }}>
+      <div className={s.actors} style={{ gridTemplateColumns: gridCols }}>
         {actors.map((actor) => (
           <div key={actor.id} className={s.actor}>
-            <div className={s.actorCard}>{actor.label}</div>
-            <div className={s.actorLine} />
+            <span className={s.actorLabel}>{actor.label}</span>
           </div>
         ))}
+      </div>
 
-        <div className={s.steps}>
-          {steps.map((step, i) => {
-            const fromIndex = actorIndex.get(step.from);
-            const toIndex = actorIndex.get(step.to);
+      <div className={s.steps}>
+        {steps.map((step, i) => {
+          const fromIdx = actorIndex.get(step.from);
+          const toIdx = actorIndex.get(step.to);
+          if (fromIdx === undefined || toIdx === undefined) return null;
 
-            if (fromIndex === undefined || toIndex === undefined) {
-              return null;
-            }
+          const isSelf = fromIdx === toIdx;
+          const start = Math.min(fromIdx, toIdx) + 1;
+          const end = Math.max(fromIdx, toIdx) + 2;
+          const isForward = fromIdx <= toIdx;
 
-            const start = Math.min(fromIndex, toIndex) + 1;
-            const end = Math.max(fromIndex, toIndex) + 1;
-            const isForward = fromIndex < toIndex;
-
-            return (
+          return (
+            <div
+              key={`${step.from}-${step.to}-${i}`}
+              className={s.stepRow}
+              style={{ gridTemplateColumns: gridCols }}
+            >
               <div
-                key={`${step.from}-${step.to}-${i}`}
-                className={s.stepRow}
-                style={{ gridTemplateColumns }}
+                className={isSelf ? s.selfStep : isForward ? s.forwardStep : s.backwardStep}
+                style={{
+                  gridColumn: isSelf ? `${fromIdx + 1}` : `${start} / ${end}`,
+                }}
               >
-                <div
-                  className={`${s.message} ${
-                    isForward ? s.forward : s.backward
-                  }`}
-                  style={{
-                    gridColumn: `${start} / ${end + 1}`,
-                  }}
-                >
-                  <div className={s.arrowLine} />
-                  <div className={s.arrowHead} />
-                  <div className={s.messageCard}>
-                    <div className={s.messageIndex}>
-                      {String(i + 1).padStart(2, "0")}
-                    </div>
-                    <div className={s.messageLabel}>{step.label}</div>
-                    {step.detail ? (
-                      <div className={s.messageDetail}>{step.detail}</div>
-                    ) : null}
-                  </div>
+                <div className={s.line} />
+                {!isSelf && <div className={s.arrow} />}
+                <div className={s.labelCard}>
+                  <span className={s.stepNum}>{String(i + 1).padStart(2, "0")}</span>
+                  <span className={s.stepLabel}>{step.label}</span>
+                  {step.detail && (
+                    <span className={s.stepDetail}>{step.detail}</span>
+                  )}
                 </div>
               </div>
-            );
-          })}
-        </div>
+            </div>
+          );
+        })}
       </div>
     </div>
   );

@@ -1,3 +1,11 @@
+export type ModuleJsonPreview = {
+  eyebrow?: string;
+  title: string;
+  lead?: string;
+  code: string;
+  language?: "json";
+};
+
 export type ModuleDetailData = {
   id: string;
   category: string;
@@ -8,6 +16,18 @@ export type ModuleDetailData = {
     lead: string;
     chips?: string[];
   };
+
+  entryFlow?: {
+    eyebrow?: string;
+    title: string;
+    lead?: string;
+    steps: {
+      title: string;
+      description?: string;
+    }[];
+  };
+  
+  jsonPreview?: ModuleJsonPreview;
 
   snapshot: {
     label: string;

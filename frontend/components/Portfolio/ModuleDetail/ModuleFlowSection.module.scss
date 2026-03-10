@@ -1,20 +1,24 @@
+@use "variables" as v;
+
 .wrapper {
-  margin: 84px 0 72px;
+  margin: 88px 0 76px;
 }
 
 .title {
-  font-size: clamp(1.4rem, 2vw, 1.75rem);
-  font-weight: 650;
+  font-size: clamp(1.5rem, 2.1vw, 1.85rem);
+  font-weight: 800;
   line-height: 1.1;
-  letter-spacing: -0.025em;
-  margin-bottom: 32px;
-  color: rgba(255, 255, 255, 0.97);
+  letter-spacing: -0.03em;
+  margin-bottom: 40px;
+  padding-bottom: 12px;
+  border-bottom: 3px solid v.$accent-cyan-muted;
+  color: v.$text-hero;
 }
 
 .steps {
   position: relative;
   display: grid;
-  gap: 28px;
+  gap: 30px;
   padding-left: 32px;
 }
 
@@ -25,7 +29,8 @@
   top: 6px;
   bottom: 34px;
   width: 2px;
-  background: rgba(255, 255, 255, 0.12);
+  background: linear-gradient(180deg, v.$accent-cyan-muted 0%, transparent 100%);
+  opacity: 0.6;
 }
 
 .step {
@@ -40,23 +45,24 @@
   width: 12px;
   height: 12px;
   border-radius: 50%;
-  background: rgba(255, 255, 255, 0.9);
+  background: v.$accent-cyan;
+  box-shadow: 0 0 0 3px v.$accent-cyan-subtle;
 }
 
 .stepTitle {
-  font-size: 1.05rem;
+  font-size: 1.06rem;
   font-weight: 600;
   line-height: 1.4;
   letter-spacing: -0.01em;
-  margin-bottom: 6px;
-  color: rgba(255, 255, 255, 0.95);
+  margin-bottom: 8px;
+  color: v.$text-primary;
 }
 
 .stepDescription {
   max-width: 78ch;
-  font-size: 0.96rem;
-  line-height: 1.7;
-  color: rgba(255, 255, 255, 0.78);
+  font-size: 1rem;
+  line-height: 1.74;
+  color: v.$text-body;
 }
 
 @media (max-width: 1024px) {

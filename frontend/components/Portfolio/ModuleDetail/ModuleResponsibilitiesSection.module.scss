@@ -1,59 +1,59 @@
+@use "variables" as v;
+
 .wrapper {
-  margin: 84px 0 72px;
+  margin: 88px 0 76px;
   display: grid;
-  gap: 32px;
+  gap: 36px;
 }
 
 .block {
-  padding: 22px 24px 24px;
+  padding: 26px 28px 28px;
   border-radius: 16px;
+  border: 1px solid v.$card-border;
+  border-left: 4px solid v.$accent-cyan-subtle;
+  background: v.$card-bg;
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.04), v.$card-shadow;
+}
 
-  background: rgba(255, 255, 255, 0.025);
-  border: 1px solid rgba(255, 255, 255, 0.08);
-
-  box-shadow:
-    inset 0 1px 0 rgba(255, 255, 255, 0.03),
-    0 14px 32px rgba(0, 0, 0, 0.18);
+.block:nth-child(2) {
+  background: linear-gradient(135deg, v.$card-bg-warm-tint 0%, v.$card-bg 100%);
+  border-left-color: v.$accent-warm-subtle;
 }
 
 .blockTitle {
-  margin: 0 0 14px;
-  font-size: clamp(1.15rem, 1.5vw, 1.35rem);
-  font-weight: 650;
-  line-height: 1.2;
+  margin: 0 0 16px;
+  font-size: clamp(1.18rem, 1.5vw, 1.38rem);
+  font-weight: 700;
+  line-height: 1.22;
   letter-spacing: -0.02em;
-  color: rgba(255, 255, 255, 0.96);
+  color: v.$text-hero;
 }
 
 .items {
   list-style: none;
   margin: 0;
   padding: 0;
-
   display: grid;
-  gap: 8px;
+  gap: 10px;
 }
 
 .items li {
   position: relative;
-  padding-left: 18px;
-
-  font-size: 0.96rem;
-  line-height: 1.65;
-  color: rgba(255, 255, 255, 0.8);
+  padding-left: 20px;
+  font-size: 0.98rem;
+  line-height: 1.68;
+  color: v.$text-body;
 }
 
 .items li::before {
   content: "";
   position: absolute;
   left: 0;
-  top: 0.62em;
-
+  top: 0.6em;
   width: 6px;
   height: 6px;
   border-radius: 50%;
-
-  background: rgba(255, 255, 255, 0.85);
+  background: v.$accent-cyan-muted;
 }
 
 @media (max-width: 768px) {
