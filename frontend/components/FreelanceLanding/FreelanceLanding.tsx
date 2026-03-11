@@ -1,12 +1,28 @@
 // app/components/FreelanceLanding/FreelanceLanding.tsx
 
+"use client";
+
+import React, { useState } from "react";
 import { FreelanceHeader } from "../FreelanceHeader/FreelanceHeader";
 import { HeroSection } from "../HeroSection/HeroSection";
 import { PortfolioSection } from "../Portfolio/PortfolioSection";
-import { AiIntakeFlowDetails } from "../Pages/AiIntakeFlowDetails/AiIntakeFlowDetails";
+import { CoreSystemsSection } from "../Portfolio/CoreSystemsSection";
+import { portfolioCategories } from "../../lib/portfolio/portfolioCategories";
+import type { PortfolioCategoryId } from "../../lib/portfolio/portfolioCategories";
 import styles from "./FreelanceLanding.module.scss";
 
 export function FreelanceLanding() {
+  const [activeCategoryId, setActiveCategoryId] =
+    useState<PortfolioCategoryId>(portfolioCategories[0].id);
+
+  const handleSelectCategory = (id: PortfolioCategoryId) => {
+    setActiveCategoryId(id);
+    document.getElementById("portfolio")?.scrollIntoView({
+      behavior: "smooth",
+      block: "start",
+    });
+  };
+
   return (
     <div className={styles.page}>
       <FreelanceHeader />
@@ -14,11 +30,13 @@ export function FreelanceLanding() {
       <main className={styles.main}>
         <HeroSection />
 
-        {/* Portfólió modulok grid */}
-        <PortfolioSection />
+        <CoreSystemsSection onCategorySelect={handleSelectCategory} />
 
-        {/* AI Intake Flow – részletes aloldal, scroll-cél az anchorId-hez */}
-        
+        {/* Portfólió modulok grid */}
+        <PortfolioSection
+          activeCategoryId={activeCategoryId}
+          onCategoryChange={setActiveCategoryId}
+        />
       </main>
     </div>
   );

@@ -1,0 +1,382 @@
+.layout {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0;
+  width: 100%;
+  max-width: 960px;
+  margin: 0 auto;
+  min-height: 280px;
+}
+
+/* Összekötő vonalak: csak aktív állapotban, kirajzolódó animáció */
+.connectionsSvg {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  overflow: visible;
+}
+
+.connectionPath {
+  stroke-dasharray: var(--path-len, 200);
+  stroke-dashoffset: var(--path-len, 200);
+  animation:
+    connectionDraw 0.55s ease-out forwards,
+    connectionWave 2.8s ease-in-out infinite 0.6s;
+}
+
+@keyframes connectionDraw {
+  to {
+    stroke-dashoffset: 0;
+  }
+}
+
+/* Belső nem lineáris hullámzás: opacity enyhe ingadozása */
+@keyframes connectionWave {
+  0%, 100% {
+    stroke-opacity: 0.82;
+  }
+  28% {
+    stroke-opacity: 1;
+  }
+  50% {
+    stroke-opacity: 0.86;
+  }
+  72% {
+    stroke-opacity: 1;
+  }
+}
+
+.sidePanel {
+  flex: 1;
+  min-width: 0;
+  padding: 1rem 1.25rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  transition: visibility 0.2s ease, opacity 0.2s ease;
+}
+
+
+.sidePanelHidden {
+  visibility: hidden;
+  opacity: 0;
+  pointer-events: none;
+}
+
+.sidePanelFaint {
+  opacity: 0.45;
+}
+
+.categoryList {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 1.35rem;
+}
+
+.categoryChip {
+  position: relative;
+  display: block;
+  width: 100%;
+  padding: 0.5rem 0.75rem;
+  font-size: 0.78rem;
+  font-weight: 500;
+  color: rgba(220, 232, 255, 0.9);
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 6px;
+  cursor: pointer;
+  text-align: left;
+  overflow: hidden;
+  transition: border-color 0.2s ease, background 0.2s ease, color 0.2s ease;
+
+  &:hover {
+    background: rgba(255, 255, 255, 0.06);
+    border-color: rgba(255, 255, 255, 0.18);
+    color: rgba(240, 248, 255, 0.98);
+  }
+
+  &:focus-visible {
+    outline: none;
+    border-color: rgba(140, 190, 255, 0.5);
+    box-shadow: 0 0 0 2px rgba(100, 160, 255, 0.18);
+  }
+}
+
+.categoryChipActive {
+  background: rgba(80, 130, 255, 0.1);
+  border-color: rgba(120, 170, 255, 0.35);
+  color: rgba(248, 252, 255, 0.98);
+
+  &::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(
+      105deg,
+      transparent 0%,
+      rgba(150, 200, 255, 0.08) 35%,
+      transparent 70%
+    );
+    background-size: 200% 100%;
+    animation: nodeShimmer 2.2s ease-in-out infinite;
+    pointer-events: none;
+  }
+}
+
+@keyframes nodeShimmer {
+  0%, 100% {
+    background-position: 200% 0;
+  }
+  50% {
+    background-position: -100% 0;
+  }
+}
+
+/* Kategória sor: chip + végpont pontok */
+.categoryListItem {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.endpointGroup {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 0.4rem;
+  flex-shrink: 0;
+}
+
+/* Bal panel: ágrajz balra; nagy margó hogy a pontok a törzs bal oldalán legyenek → vonalak kifelé */
+.endpointGroupLeft {
+  align-items: flex-end;
+  margin-right: 1.75rem;
+}
+
+/* Jobb panel: ágrajz jobbra, ív jobbra nyílik – align-items marad flex-start */
+.endpointGroupRight {
+  align-items: flex-start;
+}
+
+.endpointDotWrap {
+  display: block;
+}
+
+.endpointDot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: rgba(0, 220, 255, 0.5);
+  box-shadow: 0 0 8px rgba(0, 220, 255, 0.4);
+  transition: opacity 0.25s ease, box-shadow 0.25s ease;
+  opacity: 0.35;
+}
+
+.endpointDotFaint {
+  opacity: 0.45;
+}
+
+.endpointDotActive {
+  opacity: 1;
+  background: rgba(0, 255, 255, 0.75);
+  box-shadow: 0 0 12px rgba(0, 255, 255, 0.7), 0 0 20px rgba(0, 200, 220, 0.35);
+}
+
+.endpointPath {
+  stroke-dasharray: var(--path-len, 100);
+  stroke-dashoffset: var(--path-len, 100);
+  animation:
+    connectionDraw 0.5s ease-out 0.15s forwards,
+    connectionWave 2.6s ease-in-out infinite 0.7s;
+}
+
+/* Középső panel: futurisztikus, metál keret, glow állapotok */
+.centerCircleWrap {
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1rem;
+  position: relative;
+}
+
+.circleOuter {
+  position: relative;
+  width: 200px;
+  height: 200px;
+  border-radius: 50%;
+  overflow: hidden;
+  /* Metál keret */
+  border: 2px solid transparent;
+  background:
+    linear-gradient(rgba(18, 22, 32, 0.95), rgba(10, 14, 22, 0.98)) padding-box,
+    linear-gradient(135deg, rgba(180, 190, 210, 0.5), rgba(100, 110, 130, 0.3), rgba(180, 190, 210, 0.4)) border-box;
+  box-shadow:
+    inset 0 0 0 1px rgba(255, 255, 255, 0.06),
+    inset 0 0 30px rgba(255, 255, 255, 0.02),
+    0 0 24px rgba(120, 130, 150, 0.12),
+    0 8px 32px rgba(0, 0, 0, 0.35);
+  transition: box-shadow 0.35s ease;
+}
+
+/* Inaktív: halvány szürke világítás */
+.circleOuter.circleInactive {
+  box-shadow:
+    inset 0 0 0 1px rgba(255, 255, 255, 0.05),
+    inset 0 0 40px rgba(140, 150, 170, 0.06),
+    0 0 28px rgba(100, 110, 130, 0.15),
+    0 8px 32px rgba(0, 0, 0, 0.35);
+}
+
+/* Aktív bal fél: kék glow */
+.circleOuter.circleLeftActive .halfLeft {
+  box-shadow: inset 0 0 24px rgba(80, 140, 255, 0.18);
+}
+
+/* Aktív jobb fél: kék glow */
+.circleOuter.circleRightActive .halfRight {
+  box-shadow: inset 0 0 24px rgba(80, 140, 255, 0.18);
+}
+
+.midline {
+  position: absolute;
+  left: 50%;
+  top: 0;
+  bottom: 0;
+  width: 1px;
+  background: linear-gradient(
+    180deg,
+    transparent 0%,
+    rgba(200, 210, 230, 0.25) 20%,
+    rgba(220, 230, 255, 0.35) 50%,
+    rgba(200, 210, 230, 0.25) 80%,
+    transparent 100%
+  );
+  transform: translateX(-50%);
+  z-index: 2;
+  pointer-events: none;
+}
+
+.halfButton {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  width: 50%;
+  border: none;
+  background: transparent;
+  cursor: pointer;
+  padding: 0;
+  z-index: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background 0.2s ease, box-shadow 0.35s ease;
+
+  &:hover {
+    background: rgba(255, 255, 255, 0.03);
+  }
+
+  &:focus-visible {
+    outline: none;
+    background: rgba(120, 170, 255, 0.08);
+  }
+}
+
+.halfLeft {
+  left: 0;
+}
+
+.halfRight {
+  right: 0;
+}
+
+.halfLabel {
+  font-size: 1.05rem;
+  font-weight: 700;
+  color: rgba(255, 255, 255, 0.98);
+  pointer-events: none;
+  text-align: center;
+  line-height: 1.2;
+  letter-spacing: 0.02em;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.4);
+}
+
+/* Bal panel: szöveg jobbra igazítva, nodok messzebb a körtől (x) */
+.layout .sidePanel:first-of-type {
+  align-items: flex-end;
+  text-align: right;
+  padding-right: 2.25rem;
+
+  .categoryList {
+    align-items: flex-end;
+  }
+
+  .categoryChip {
+    text-align: right;
+    max-width: 180px;
+  }
+}
+
+/* Jobb panel: szöveg balra igazítva, nodok messzebb a körtől (x) */
+.layout .sidePanel:last-of-type {
+  align-items: flex-start;
+  text-align: left;
+  padding-left: 2.25rem;
+
+  .categoryList {
+    align-items: flex-start;
+  }
+
+  .categoryChip {
+    text-align: left;
+    max-width: 180px;
+  }
+
+  .endpointGroup {
+    margin-left: auto;
+  }
+}
+
+@media (max-width: 720px) {
+  .layout {
+    flex-direction: column;
+    gap: 1.25rem;
+    min-height: auto;
+  }
+
+  .sidePanel {
+    width: 100%;
+    max-width: 280px;
+    padding: 0.5rem 0;
+  }
+
+  .layout .sidePanel:first-of-type,
+  .layout .sidePanel:last-of-type {
+    align-items: center;
+    text-align: center;
+    padding-left: 1rem;
+    padding-right: 1rem;
+
+    .categoryList {
+      align-items: center;
+    }
+
+    .categoryChip {
+      text-align: center;
+      max-width: none;
+    }
+  }
+
+  .circleOuter {
+    width: 180px;
+    height: 180px;
+  }
+}

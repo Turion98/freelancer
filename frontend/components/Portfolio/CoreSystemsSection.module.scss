@@ -1,0 +1,43 @@
+.section {
+  position: relative;
+  padding: 56px 0 40px;
+}
+
+.inner {
+  max-width: 1000px;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+.header {
+  max-width: 760px;
+  margin: 0 auto 28px auto;
+  text-align: center;
+}
+
+.title {
+  font-size: clamp(26px, 3vw, 32px);
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  margin-bottom: 8px;
+}
+
+.subtitle {
+  font-size: 14px;
+  line-height: 1.6;
+  opacity: 0.9;
+  color: rgba(209, 213, 219, 0.95);
+}
+
+.grid {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+@media (min-width: 900px) {
+  .section {
+    padding-top: 64px;
+  }
+}
+

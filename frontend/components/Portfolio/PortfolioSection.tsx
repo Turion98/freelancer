@@ -8,21 +8,37 @@ import {
   type PortfolioCategoryId,
 } from "../../lib/portfolio/portfolioCategories";
 import { portfolioProjects } from "../../lib/portfolio/portfolioProjects";
-import { CategoryTabs } from "./CategoryTabs";
+import { CategoryCircleSelector } from "./CategoryCircleSelector";
 import { CategoryOverlay } from "./CategoryOverlay";
 
-export const PortfolioSection: React.FC = () => {
-  const [activeCategoryId, setActiveCategoryId] = useState<PortfolioCategoryId>(
-    portfolioCategories[0].id
-  );
+type Props = {
+  activeCategoryId?: PortfolioCategoryId;
+  onCategoryChange?: (id: PortfolioCategoryId) => void;
+};
+
+export const PortfolioSection: React.FC<Props> = ({
+  activeCategoryId: controlledCategoryId,
+  onCategoryChange,
+}) => {
+  const [internalCategoryId, setInternalCategoryId] =
+    useState<PortfolioCategoryId>(portfolioCategories[0].id);
+
+  const activeCategoryId =
+    controlledCategoryId !== undefined
+      ? controlledCategoryId
+      : internalCategoryId;
 
   const [prevCategoryId, setPrevCategoryId] =
     useState<PortfolioCategoryId | null>(null);
 
   const handleChange = (newId: PortfolioCategoryId) => {
-    if (newId === activeCategoryId) return; // felesleges re-render elkerülése
+    if (newId === activeCategoryId) return;
     setPrevCategoryId(activeCategoryId);
-    setActiveCategoryId(newId);
+    if (onCategoryChange) {
+      onCategoryChange(newId);
+    } else {
+      setInternalCategoryId(newId);
+    }
   };
 
   const activeCategory = portfolioCategories.find(
@@ -52,31 +68,35 @@ export const PortfolioSection: React.FC = () => {
         </p>
       </div>
 
-      <CategoryTabs
-        categories={portfolioCategories}
-        activeCategoryId={activeCategoryId}
-        onChange={handleChange}
-      />
+      <div className={s.portfolioModules}>
+        <div className={s.overlayStack}>
+          <div className={s.selectorWrap}>
+            <CategoryCircleSelector
+              categories={portfolioCategories}
+              activeCategoryId={activeCategoryId}
+              onChange={handleChange}
+            />
+          </div>
 
-      {/* Két overlay egymás fölött: exit (kicsúszik), enter (becsúszik) */}
-      <div className={s.overlayStack}>
-        {prevCategory && (
-          <CategoryOverlay
-            key={`prev-${prevCategory.id}`}
-            category={prevCategory}
-            projects={prevProjects}
-            mode="exit"
-          />
-        )}
+          {/* Két overlay egymás fölött: exit (kicsúszik), enter (becsúszik) */}
+          {prevCategory && (
+            <CategoryOverlay
+              key={`prev-${prevCategory.id}`}
+              category={prevCategory}
+              projects={prevProjects}
+              mode="exit"
+            />
+          )}
 
-        {activeCategory && (
-          <CategoryOverlay
-            key={`active-${activeCategory.id}`}
-            category={activeCategory}
-            projects={activeProjects}
-            mode="enter"
-          />
-        )}
+          {activeCategory && (
+            <CategoryOverlay
+              key={`active-${activeCategory.id}`}
+              category={activeCategory}
+              projects={activeProjects}
+              mode="enter"
+            />
+          )}
+        </div>
       </div>
     </section>
   );

@@ -19,12 +19,27 @@ const statusLabel: Record<PortfolioProject["status"], string> = {
 
 // Eldöntjük, hova mutasson a "Tudj meg többet"
 const getDetailHref = (project: PortfolioProject): string => {
-  // 1) AI Intake Flow – külön oldal
-  if (project.id === "ai-intake-flow") {
-    return "/freelance/ai-intake-flow";
+  if (project.id === "ai-lead-qualification") {
+    return "/freelance/ai-lead-qualification";
   }
 
-  // 2) Content Schema & Validation System – külön oldal
+  if (project.id === "ai-generated-client-profile") {
+    return "/freelance/ai-generated-client-profile";
+  }
+
+  if (project.id === "conversational-visitor-discovery") {
+    return "/freelance/conversational-visitor-discovery";
+  }
+
+  if (project.id === "dynamic-use-case-recommendation") {
+    return "/freelance/dynamic-use-case-recommendation";
+  }
+
+  if (project.id === "state-driven-conversation-control") {
+    return "/freelance/state-driven-conversation-control";
+  }
+
+  // Content Schema & Validation System – külön oldal
   if (project.id === "content-schema-validation") {
     return "/freelance/content-schema-validation";
   }

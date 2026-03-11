@@ -27,9 +27,22 @@
   opacity: 0.8;
 }
 
-/* 🔥 Ezt kell hozzáadni: az overlay stack konténer */
+/* Portfólió modulok konténer: körválasztó + overlay kártyák */
+.portfolioModules {
+  position: relative;
+  max-width: 1050px;
+  margin: 0 auto;
+  padding: 0 16px;
+}
+
+.selectorWrap {
+  position: relative;
+  z-index: 10;
+  min-height: 320px;
+  flex-shrink: 0;
+}
+
 .overlayStack {
-  position: relative;  /* minden overlay ehhez igazodik */
-  margin-top: 20px;
-  min-height: 480px;   /* elég hely 1–2 sor kártyának, ne vágja le az overlay tartalmát */
+  position: relative;
+  min-height: 800px; /* kör (~320px) + kártya terület (~480px) */
 }
