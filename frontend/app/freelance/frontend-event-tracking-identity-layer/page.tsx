@@ -1,13 +1,11 @@
-// app/freelance/content-schema-validation/page.tsx
-
 import { FreelanceSubpageLayout } from "../../../components/FreelanceSubpageLayout/FreelanceSubpageLayout";
 import { ModuleDetailPageShell } from "../../../components/Portfolio/ModuleDetail/ModuleDetailPageShell";
-import { contentSchemaValidationModule } from "../../../lib/portfolio/moduleDetailData/contentSchemaValidation";
+import { frontendEventTrackingIdentityLayerModule } from "../../../lib/portfolio/moduleDetailData/frontendEventTrackingIdentityLayerModule";
 
-export default function ContentSchemaValidationPage() {
+export default function FrontendEventTrackingIdentityLayerPage() {
   return (
     <FreelanceSubpageLayout>
-      <ModuleDetailPageShell data={contentSchemaValidationModule} />
+      <ModuleDetailPageShell data={frontendEventTrackingIdentityLayerModule} />
     </FreelanceSubpageLayout>
   );
 }

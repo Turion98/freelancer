@@ -1,0 +1,11 @@
+/* Same gradient as ModuleDetailPageShell .pageBg so header area matches content area */
+.root {
+  width: 100%;
+  min-height: 100vh;
+  background: radial-gradient(
+    ellipse 120% 80% at 50% 0,
+    #1a3d47 0%,
+    #0f2027 35%,
+    #020617 85%
+  );
+}

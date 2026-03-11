@@ -16,6 +16,8 @@ export const backendStoryResolutionModule: ModuleDetailData = {
       "Incremental Delivery",
       "Questell Runtime",
     ],
+   businessValue:
+  "This module enables efficient runtime delivery for complex interactive stories by resolving pages on demand instead of sending the full story graph to the browser. That makes the system lighter, faster, and easier to scale as story complexity grows."
   },
 
   snapshot: [
@@ -415,9 +417,17 @@ export const backendStoryResolutionModule: ModuleDetailData = {
   ],
 
   relatedModules: [
-    { title: "Content Schema & Validation System", href: "/freelance/content-schema-validation" },
-    { title: "Decision Flow Runtime Engine", href: "#portfolio" },
-    { title: "Client Page Cache Layer", href: "#portfolio" },
-    { title: "Analytics Event Pipeline", href: "#portfolio" },
-  ],
+  {
+    title: "Content Schema & Validation System",
+    href: "/freelance/content-schema-validation",
+  },
+  {
+    title: "Client Cache & Prefetch Layer",
+    href: "/freelance/client-cache-prefetch-layer",
+  },
+  {
+    title: "Dynamic Story Renderer",
+    href: "/freelance/dynamic-story-renderer",
+  },
+],
 };

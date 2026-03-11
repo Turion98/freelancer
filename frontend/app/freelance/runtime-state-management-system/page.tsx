@@ -1,13 +1,11 @@
-// app/freelance/content-schema-validation/page.tsx
-
 import { FreelanceSubpageLayout } from "../../../components/FreelanceSubpageLayout/FreelanceSubpageLayout";
 import { ModuleDetailPageShell } from "../../../components/Portfolio/ModuleDetail/ModuleDetailPageShell";
-import { contentSchemaValidationModule } from "../../../lib/portfolio/moduleDetailData/contentSchemaValidation";
+import { runtimeStateManagementSystemModule } from "../../../lib/portfolio/moduleDetailData/runtimeStateManagementSystemModule";
 
-export default function ContentSchemaValidationPage() {
+export default function RuntimeStateManagementSystemPage() {
   return (
     <FreelanceSubpageLayout>
-      <ModuleDetailPageShell data={contentSchemaValidationModule} />
+      <ModuleDetailPageShell data={runtimeStateManagementSystemModule} />
     </FreelanceSubpageLayout>
   );
 }

@@ -1,13 +1,11 @@
-// app/freelance/content-schema-validation/page.tsx
-
 import { FreelanceSubpageLayout } from "../../../components/FreelanceSubpageLayout/FreelanceSubpageLayout";
 import { ModuleDetailPageShell } from "../../../components/Portfolio/ModuleDetail/ModuleDetailPageShell";
-import { contentSchemaValidationModule } from "../../../lib/portfolio/moduleDetailData/contentSchemaValidation";
+import { clientCachePrefetchLayerModule } from "../../../lib/portfolio/moduleDetailData/clientCachePrefetchLayerModule";
 
-export default function ContentSchemaValidationPage() {
+export default function ClientCachePrefetchLayerPage() {
   return (
     <FreelanceSubpageLayout>
-      <ModuleDetailPageShell data={contentSchemaValidationModule} />
+      <ModuleDetailPageShell data={clientCachePrefetchLayerModule} />
     </FreelanceSubpageLayout>
   );
 }

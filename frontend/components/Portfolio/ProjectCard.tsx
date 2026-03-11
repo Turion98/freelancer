@@ -34,7 +34,57 @@ const getDetailHref = (project: PortfolioProject): string => {
     return "/freelance/backend-story-resolution";
   }
 
-  // 4) Minden más egyelőre anchor (később adhatunk nekik külön oldalt)
+  // 4) Client Cache & Prefetch Layer – külön oldal
+  if (project.id === "client-cache-prefetch-layer") {
+    return "/freelance/client-cache-prefetch-layer";
+  }
+
+  // 5) Dynamic Story Renderer – külön oldal
+  if (project.id === "dynamic-story-renderer") {
+    return "/freelance/dynamic-story-renderer";
+  }
+
+  // 6) Decision Flow Runtime Engine – külön oldal
+  if (project.id === "decision-runtime-engine") {
+    return "/freelance/decision-runtime-engine";
+  }
+
+  // 7) Runtime State Management System – külön oldal
+  if (project.id === "runtime-state-management-system") {
+    return "/freelance/runtime-state-management-system";
+  }
+
+  // 8) Conditional Logic & Rule Engine – külön oldal
+  if (project.id === "conditional-logic-rule-engine") {
+    return "/freelance/conditional-logic-rule-engine";
+  }
+
+  // 9) Fragment & Flag State System – külön oldal
+  if (project.id === "fragment-flag-state-system") {
+    return "/freelance/fragment-flag-state-system";
+  }
+
+  // 10) Frontend Event Tracking & Identity Layer – külön oldal
+  if (project.id === "frontend-event-tracking-identity-layer") {
+    return "/freelance/frontend-event-tracking-identity-layer";
+  }
+
+  // 11) Client Event Queue & Batch Upload System – külön oldal
+  if (project.id === "client-event-queue-batch-upload-system") {
+    return "/freelance/client-event-queue-batch-upload-system";
+  }
+
+  // 12) Backend Event Ingestion & Append-Only Storage – külön oldal
+  if (project.id === "backend-event-ingestion-append-only-storage") {
+    return "/freelance/backend-event-ingestion-append-only-storage";
+  }
+
+  // 13) Reporting & Decision Path Analytics Engine – külön oldal
+  if (project.id === "reporting-decision-path-analytics-engine") {
+    return "/freelance/reporting-decision-path-analytics-engine";
+  }
+
+  // 14) Minden más egyelőre anchor (később adhatunk nekik külön oldalt)
   if (project.anchorId) {
     return `#${project.anchorId}`;
   }

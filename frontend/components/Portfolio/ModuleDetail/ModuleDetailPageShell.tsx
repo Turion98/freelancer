@@ -41,6 +41,7 @@ export function ModuleDetailPageShell({ data }: Props) {
           title={data.hero.title}
           lead={data.hero.lead}
           chips={data.hero.chips}
+          businessValue={data.hero.businessValue}
         />
         {data.entryFlow && <ModuleEntryFlow {...data.entryFlow} />}
         {data.jsonPreview && (
@@ -52,16 +53,20 @@ export function ModuleDetailPageShell({ data }: Props) {
             language={data.jsonPreview.language}
           />
         )}
-        <ModuleSnapshotGrid items={data.snapshot} />
-        <ModuleNarrativeSection
+        <div id="section-snapshot">
+          <ModuleSnapshotGrid items={data.snapshot} />
+        </div>
+        <div id="section-overview">
+          <ModuleNarrativeSection
           overview={data.overview}
           problem={data.problem}
           solution={data.solution}
           contentStructure={data.contentStructure}
         />
+        </div>
 
         {architectureItem && (
-          <div className={s.architectureDiagramSlot}>
+          <div id="section-diagrams" className={s.architectureDiagramSlot}>
             <h3 className={s.diagramSlotTitle}>{architectureItem.title}</h3>
             {architectureItem.description && (
               <p className={s.diagramSlotDescription}>{architectureItem.description}</p>
@@ -106,7 +111,9 @@ export function ModuleDetailPageShell({ data }: Props) {
         )}
 
         {data.flow && (
-          <ModuleFlowSection title={data.flow.title} steps={data.flow.steps} />
+          <div id="section-flow">
+            <ModuleFlowSection title={data.flow.title} steps={data.flow.steps} />
+          </div>
         )}
 
         {pipelineItem && (
@@ -125,7 +132,9 @@ export function ModuleDetailPageShell({ data }: Props) {
         )}
 
         {data.responsibilities && data.responsibilities.length > 0 && (
-          <ModuleResponsibilitiesSection responsibilities={data.responsibilities} />
+          <div id="section-responsibilities">
+            <ModuleResponsibilitiesSection responsibilities={data.responsibilities} />
+          </div>
         )}
         {data.runtimeSafety && (
           <RuntimeSafetySection
@@ -174,10 +183,16 @@ export function ModuleDetailPageShell({ data }: Props) {
             ) : null;
           })()}
 
-        <ModuleOutcomeSection outcome={data.outcome} />
-        <ModuleTakeawaysSection takeaways={data.takeaways} />
+        <div id="section-outcome">
+          <ModuleOutcomeSection outcome={data.outcome} />
+        </div>
+        <div id="section-takeaways">
+          <ModuleTakeawaysSection takeaways={data.takeaways} />
+        </div>
         {data.relatedModules && data.relatedModules.length > 0 && (
-          <RelatedModulesSection relatedModules={data.relatedModules} />
+          <div id="section-related">
+            <RelatedModulesSection relatedModules={data.relatedModules} />
+          </div>
         )}
       </article>
     </div>

@@ -1,13 +1,11 @@
-// app/freelance/content-schema-validation/page.tsx
-
 import { FreelanceSubpageLayout } from "../../../components/FreelanceSubpageLayout/FreelanceSubpageLayout";
 import { ModuleDetailPageShell } from "../../../components/Portfolio/ModuleDetail/ModuleDetailPageShell";
-import { contentSchemaValidationModule } from "../../../lib/portfolio/moduleDetailData/contentSchemaValidation";
+import { conditionalLogicRuleEngineModule } from "../../../lib/portfolio/moduleDetailData/conditionalLogicRuleEngineModule";
 
-export default function ContentSchemaValidationPage() {
+export default function ConditionalLogicRuleEnginePage() {
   return (
     <FreelanceSubpageLayout>
-      <ModuleDetailPageShell data={contentSchemaValidationModule} />
+      <ModuleDetailPageShell data={conditionalLogicRuleEngineModule} />
     </FreelanceSubpageLayout>
   );
 }

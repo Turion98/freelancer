@@ -8,9 +8,10 @@ type Props = {
   title: string;
   lead: string;
   chips?: string[];
+  businessValue?: string;
 };
 
-export function ModuleHero({ eyebrow, title, lead, chips }: Props) {
+export function ModuleHero({ eyebrow, title, lead, chips, businessValue }: Props) {
   return (
     <header className={s.hero} id="module-hero">
       {eyebrow && <p className={s.eyebrow}>{eyebrow}</p>}
@@ -23,6 +24,12 @@ export function ModuleHero({ eyebrow, title, lead, chips }: Props) {
               {chip}
             </span>
           ))}
+        </div>
+      )}
+      {businessValue && (
+        <div className={s.businessValue}>
+          <span className={s.businessValueLabel}>Business Value</span>
+          <p className={s.businessValueText}>{businessValue}</p>
         </div>
       )}
     </header>

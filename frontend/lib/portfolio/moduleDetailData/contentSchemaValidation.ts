@@ -16,6 +16,8 @@ export const contentSchemaValidationModule: ModuleDetailData = {
       "Content Contract",
       "Questell Core",
     ],
+   businessValue:
+  "This module creates a reliable foundation for the platform by ensuring that every story follows the same structural contract before execution. That makes interactive experiences safer to scale, easier to maintain, and far less likely to fail at runtime."
   },
 
   entryFlow: {
@@ -505,9 +507,17 @@ export const contentSchemaValidationModule: ModuleDetailData = {
   ],
 
   relatedModules: [
-    {
-      title: "Backend Story Resolution & Page API",
-      href: "/portfolio/json-engine/backend-story-resolution",
-    },
-  ],
+  {
+    title: "Backend Story Resolution & Page API",
+    href: "/freelance/backend-story-resolution",
+  },
+  {
+    title: "Client Cache & Prefetch Layer",
+    href: "/freelance/client-cache-prefetch-layer",
+  },
+  {
+    title: "Dynamic Story Renderer",
+    href: "/freelance/dynamic-story-renderer",
+  },
+],
 };

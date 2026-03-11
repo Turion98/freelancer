@@ -3,7 +3,7 @@ export type ModuleJsonPreview = {
   title: string;
   lead?: string;
   code: string;
-  language?: "json";
+  language?: "json" | "ts";
 };
 
 export type ModuleDetailData = {
@@ -15,6 +15,7 @@ export type ModuleDetailData = {
     title: string;
     lead: string;
     chips?: string[];
+    businessValue?: string;
   };
 
   entryFlow?: {
